@@ -52,9 +52,6 @@ public class LinkedList {
                  return true;
              }
              while (currentEl != null) {
-                 if (currentEl == this.tail) {
-
-                 }
                  if (currentEl.value == _value && currentEl == this.head) {
                      this.head = nextEl;
                      return true;
@@ -111,18 +108,71 @@ public class LinkedList {
 
      public void insertAfter(Node _nodeAfter, Node _nodeToInsert) {
        // здесь будет ваш код вставки узла после заданного
-         Node node = this.head;
-        if (_nodeAfter == null) {
-            this.head = _nodeToInsert;
-            this.tail = _nodeToInsert;
-        } else {
-            while (node != null && node != _nodeAfter) {
-                node = node.next;
-            }
-            Node x = node.next;
-            node.next = _nodeToInsert;
-            _nodeToInsert.next = x;
-        }
+//         Node node = this.head;
+//        if (_nodeAfter == null) {
+//            this.head = _nodeToInsert;
+//            this.tail = _nodeToInsert;
+//        } else {
+//            while (node != null && node != _nodeAfter) {
+//                node = node.next;
+//            }
+//            Node x = node.next;
+//            node.next = _nodeToInsert;
+//            _nodeToInsert.next = x;
+//        }
+//         Node node = this.head;
+//         if (_nodeAfter == null) {
+//             this.head = _nodeToInsert;
+//             this.tail = _nodeToInsert;
+//         }
+//         if (_nodeAfter == this.tail) {
+//
+//
+//         }
+//
+//
+//         else {
+//             while (node != null && node != _nodeAfter) {
+//                 node = node.next;
+//             }
+//             Node x = node.next;
+//             node.next = _nodeToInsert;
+//             _nodeToInsert.next = x;
+//         }
+         try{
+             Node currentEl = this.head;
+             Node nextEl = currentEl.next;
+             if (currentEl == null){
+                 this.head = _nodeToInsert;
+                 this.tail = _nodeToInsert;
+             } else if (currentEl == _nodeAfter && this.count() == 1) {
+                 this.head.next = _nodeToInsert;
+                 this.tail = _nodeToInsert;
+                 _nodeToInsert.next = null;
+
+             } else {
+                 while (currentEl != null) {
+                     if (currentEl == _nodeAfter && currentEl != tail) {
+                         Node swap = currentEl.next;
+                         currentEl.next = _nodeToInsert;
+                         _nodeToInsert.next = swap;
+                         break;
+                     }
+                     if (currentEl == _nodeAfter) {
+                         Node swap = currentEl.next;
+                         currentEl.next = _nodeToInsert;
+                         _nodeToInsert = swap;
+                         this.tail = _nodeToInsert;
+                         break;
+                     }
+                     currentEl = nextEl;
+                     nextEl = nextEl.next;
+                 }
+             }
+
+         } catch (NullPointerException e) {
+
+         }
        // если _nodeAfter = null,
        // добавьте новый элемент первым в списке      
      }

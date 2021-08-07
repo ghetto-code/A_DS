@@ -5,21 +5,19 @@ public class Main {
         LinkedList myLL = new LinkedList();
         myLL.addInTail(new Node(12));
         myLL.addInTail(new Node(13));
+        Node x = new Node(666);
+        myLL.addInTail(x);
         myLL.addInTail(new Node(13));
         myLL.addInTail(new Node(14));
         myLL.addInTail(new Node(14));
+        myLL.insertAfter(x,new Node(777));
 
-        LinkedList myLL2 = new LinkedList();
-        myLL2.addInTail(new Node(1));
-        myLL2.addInTail(new Node(2));
-        myLL2.addInTail(new Node(3));
-        myLL2.addInTail(new Node(4));
-        myLL2.addInTail(new Node(0));
-
-
-        for (Integer x: getSumList(myLL,myLL2)) {
-            System.out.println(x);
+        Node c = myLL.head;
+        while (c!=null){
+            System.out.println(c.value);
+            c = c.next;
         }
+
 
 
     }
