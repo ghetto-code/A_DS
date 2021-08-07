@@ -114,6 +114,7 @@ public class LinkedList {
          Node node = this.head;
         if (_nodeAfter == null) {
             this.head = _nodeToInsert;
+            this.tail = _nodeToInsert;
         } else {
             while (node != null && node != _nodeAfter) {
                 node = node.next;
