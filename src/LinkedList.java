@@ -52,20 +52,26 @@ public class LinkedList {
                  return true;
              }
              while (currentEl != null) {
+                 if (currentEl == this.tail) {
+
+                 }
                  if (currentEl.value == _value && currentEl == this.head) {
                      this.head = nextEl;
                      return true;
                  }
-                 if (currentEl.value == _value) {
+                 if (currentEl.value == _value && currentEl != tail) {
                      prevEl.next = nextEl;
+                     return true;
+                 }
+                 if (currentEl.value == _value) {
+                     prevEl.next = null;
+                     tail = prevEl;
                      return true;
                  }
                  prevEl = currentEl;
                  currentEl = nextEl;
                  nextEl = nextEl.next;
-
              }
-
          } catch (NullPointerException e) {
 
          }
