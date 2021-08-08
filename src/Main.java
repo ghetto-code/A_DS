@@ -13,6 +13,8 @@ public class Main {
         myLL.insertAfter(null, firstNodeForInsert);
         myLL.insertAfter(firstNodeForInsert,secondNodeForInsert);
         myLL.insertAfter(secondNodeForInsert,thirdNodeForInsert);
+        myLL.insertAfter(secondNodeForInsert,fourthNodeForInsert);
+
 
         Node c = myLL.head;
         while (c!=null){

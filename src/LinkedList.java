@@ -114,29 +114,18 @@ public class LinkedList {
              this.head.next = _nodeToInsert;
              this.tail = _nodeToInsert;
              _nodeToInsert.next = null;
-         } else {
-             try {
-                 Node currentEl = this.head;
-                 Node nextEl = currentEl.next;
-                 while (currentEl != null) {
-                     if (currentEl == _nodeAfter && currentEl != tail) {
-                         Node swap = currentEl.next;
-                         currentEl.next = _nodeToInsert;
-                         _nodeToInsert.next = swap;
-                         break;
-                     }
-                     if (currentEl == _nodeAfter) {
-                         Node swap = currentEl.next;
-                         currentEl.next = _nodeToInsert;
-                         _nodeToInsert = swap;
+         } else if (this.count() >= 2) {
+             Node currentNode = this.head;
+             while (currentNode != null) {
+                 if (currentNode == _nodeAfter) {
+                     Node swap = currentNode.next;
+                     currentNode.next = _nodeToInsert;
+                     _nodeToInsert.next = swap;
+                     if (currentNode == this.tail) {
                          this.tail = _nodeToInsert;
-                         break;
                      }
-                     currentEl = nextEl;
-                     nextEl = nextEl.next;
                  }
-             } catch (NullPointerException e) {
-
+                 currentNode = currentNode.next;
              }
          }
        // если _nodeAfter = null,
