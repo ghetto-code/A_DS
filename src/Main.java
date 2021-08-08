@@ -3,14 +3,16 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         LinkedList myLL = new LinkedList();
-        myLL.addInTail(new Node(12));
-        myLL.addInTail(new Node(13));
-        Node x = new Node(666);
-        myLL.addInTail(x);
-        myLL.addInTail(new Node(13));
-        myLL.addInTail(new Node(14));
-        myLL.addInTail(new Node(14));
-        myLL.insertAfter(x,new Node(777));
+
+        Node firstNodeForInsert = new Node(12);
+        Node secondNodeForInsert = new Node(13);
+        Node thirdNodeForInsert = new Node(14);
+        Node fourthNodeForInsert = new Node(15);
+
+
+        myLL.insertAfter(null, firstNodeForInsert);
+        myLL.insertAfter(firstNodeForInsert,secondNodeForInsert);
+        myLL.insertAfter(secondNodeForInsert,thirdNodeForInsert);
 
         Node c = myLL.head;
         while (c!=null){
