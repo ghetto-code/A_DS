@@ -36,8 +36,11 @@ public class LinkedList2 {
     }
 
     public ArrayList<Node> findAll(int _value) {
-        ArrayList<Node> nodes = new ArrayList<>();
 
+        ArrayList<Node> nodes = new ArrayList<>();
+        if (this.count == 0){
+            return nodes;
+        }
         Node nodeHead = this.head;
         Node nodeTail = this.tail;
         int iterCount = 0;
