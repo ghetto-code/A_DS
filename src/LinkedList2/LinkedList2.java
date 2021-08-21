@@ -71,47 +71,24 @@ public class LinkedList2 {
     public boolean remove(int _value) {
         Node _fromHead = this.head;
         Node _fromTail = this.tail;
-        if (_fromHead == null && _fromTail == null) {
+        if (this.count == 0) {
             return false;
         }
-        if (_fromHead == _fromTail && _fromHead.value == _value) {
+        if (_fromHead.value == _value && this.count == 1) {
             this.clear();
             return true;
         }
 
-        assert _fromHead != null;
-        if (_fromHead.value == _value && _fromTail.value == _value && this.count == 2) {
-            this.head.prev = null;
-            this.head.next = null;
-            this.tail = this.head;
-            return true;
-        }
-        if (_fromHead.value == _value && this.count >= 2) {
-            this.head = this.head.next;
-            this.head.prev = null;
-            return true;
-        }
-        if (_fromTail.value == _value && this.count >= 2) {
-            this.tail = this.tail.prev;
-            this.tail.next = null;
-            return true;
-        }
         int iterCount = 0;
-        while (iterCount < this.count/2+1) {
-            if (_fromHead.value == _value && _fromHead == this.head) {
-               this.head = _fromHead.next;
-                _fromHead.next.prev = null;
-                count--;
-                return true;
-            }
-            if (_fromTail.value == _value && _fromTail == this.tail) {
-                this.tail = _fromTail.prev;
-                _fromTail.prev.next = null;
-                count--;
-                return true;
-            }
 
+        while (iterCount < this.count / 2) {
             if (_fromHead.value == _value) {
+                if (_fromHead == this.head){
+                    this.head = _fromHead.next;
+                    _fromHead.next.prev = null;
+                    count--;
+                    return true;
+                }
                 Node prev = _fromHead.prev;
                 Node next = _fromHead.next;
                 prev.next = next;
@@ -120,6 +97,12 @@ public class LinkedList2 {
                 return true;
             }
             if (_fromTail.value == _value) {
+                if (_fromTail == this.tail) {
+                    this.tail = _fromTail.prev;
+                    _fromTail.prev.next = null;
+                    count--;
+                    return true;
+                }
                 Node prev = _fromTail.prev;
                 Node next = _fromTail.next;
                 prev.next = next;
@@ -131,30 +114,82 @@ public class LinkedList2 {
             _fromTail = _fromTail.prev;
             iterCount++;
         }
+        if (this.count % 2 != 0){
+            _fromHead = _fromHead.next;
+            if (_fromHead.value == _value) {
+                Node prev = _fromHead.prev;
+                Node next = _fromHead.next;
+                prev.next = next;
+                next.prev = prev;
+                count--;
+                return true;
+            }
+        }
         return false;
     }
 
     public void removeAll(int _value) {
-        if (count == 0){
-            return;
-        }
         Node _fromHead = this.head;
         Node _fromTail = this.tail;
+        if (this.count == 0) {
+            return;
+        }
+        if (_fromHead.value == _value && this.count == 1) {
+            this.clear();
+        }
+
         int iterCount = 0;
-        while (iterCount < this.count/2+1) {
-            try {
-                if(_fromHead.value == _value && _fromTail.value == _value){
-                    remove(_value);
-                }else if(_fromHead.value == _value){
-                    remove(_value);
-                }else if(_fromTail.value == _value){
-                    remove(_value);
+
+        while (iterCount < this.count / 2) {
+            if (_fromHead.next == _fromTail && _fromHead.value == _value) {
+                if (this.count == 2){
+                    this.clear();
+                    break;
+                } else {
+                    Node prev = _fromHead.prev;
+                    Node next = _fromTail.next;
+                    prev.next = next.prev;
                 }
-                _fromHead = _fromHead.next;
-                _fromTail = _fromTail.prev;
-                iterCount++;
-            } catch (NullPointerException e) {
-                return;
+            }
+            if (_fromHead.value == _value) {
+                if (_fromHead == this.head){
+                    this.head = _fromHead.next;
+                    _fromHead.next.prev = null;
+
+                }else{
+                    Node prev = _fromHead.prev;
+                    Node next = _fromHead.next;
+                    prev.next = next;
+                    next.prev = prev;
+                }
+                count--;
+            }
+
+            assert _fromTail != null;
+            if (_fromTail.value == _value) {
+                if (_fromTail == this.tail) {
+                    this.tail = _fromTail.prev;
+                    _fromTail.prev.next = null;
+                } else {
+                    Node prev = _fromTail.prev;
+                    Node next = _fromTail.next;
+                    prev.next = next;
+                    next.prev = prev;
+                }
+                count--;
+            }
+            _fromHead = _fromHead.next;
+            _fromTail = _fromTail.prev;
+            iterCount++;
+        }
+        if (this.count % 2 != 0) {
+            _fromHead = _fromHead.next;
+            if (_fromHead.value == _value) {
+                Node prev = _fromHead.prev;
+                Node next = _fromHead.next;
+                prev.next = next;
+                next.prev = prev;
+                count--;
             }
         }
     }
@@ -170,48 +205,43 @@ public class LinkedList2 {
     }
 
     public void insertAfter(Node _nodeAfter, Node _nodeToInsert) {
+
+        Node _fromHead = this.head;
+        Node _fromTail = this.tail;
         if (_nodeAfter == null) {
-            this.head = _nodeToInsert;
-            this.tail = _nodeToInsert;
-            count++;
-        } else if(this.count == 1) {
-            this.head.next= _nodeToInsert;
-            _nodeToInsert.prev = this.head;
-            this.tail = _nodeToInsert;
-            count++;
-        } else if (this.count() >= 2) {
-            Node _fromHead = this.head;
-            Node _fromTail = this.tail;
-            int iterCount = 0;
-            while (iterCount < this.count/2+1) {
-                if (_fromHead == _nodeAfter) {
-                    Node swap = _fromHead.next;
-                    _fromHead.next = _nodeToInsert;
-                    _nodeToInsert.prev = _fromHead;
-                    _nodeToInsert.next = swap;
-                    swap.prev = _nodeToInsert;
-                    count++;
-                    break;
-
-                }
-                if (_fromTail == _nodeAfter) {
-                    Node swap = _fromTail.prev;
-                    _fromTail.prev = _nodeToInsert;
-                    _nodeToInsert.next = _fromTail;
-                    _nodeToInsert.prev = swap;
-                    swap.next = _nodeToInsert;
-                    count++;
-                    break;
-                }
-
-                _fromHead = _fromHead.next;
-                _fromTail = _fromTail.prev;
-                iterCount++;
-
-            }
-
+            this.addInTail(_nodeToInsert);
+            return;
         }
-
+        if (this.count == 1 && _fromHead == _nodeAfter) {
+            this.addInTail(_nodeToInsert);
+            return;
+        }
+        int iterCounter = 0;
+        while (iterCounter < this.count / 2) {
+            if (_fromHead == _nodeAfter) {
+                Node swap = _fromHead.next;
+                _fromHead.next = _nodeToInsert;
+                _nodeToInsert.prev = _fromHead;
+                _nodeToInsert.next = swap;
+                swap.prev = _nodeToInsert;
+                return;
+            }
+            if (_fromTail == _nodeAfter) {
+               if (_fromTail.next == null) {
+                  addInTail(_nodeToInsert);
+               } else {
+                   Node swap = _fromTail.next;
+                   _fromTail.next = _nodeToInsert;
+                   _nodeToInsert.prev = _fromTail;
+                   _nodeToInsert.next = swap;
+                   swap.prev = _nodeToInsert;
+                   return;
+               }
+            }
+            _fromHead = _fromHead.next;
+            _fromTail = _fromTail.prev;
+            this.count++;
+        }
     }
 }
 
