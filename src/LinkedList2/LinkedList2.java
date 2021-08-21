@@ -40,15 +40,15 @@ public class LinkedList2 {
 
         Node nodeHead = this.head;
         Node nodeTail = this.tail;
-
-        while (nodeHead != null && nodeTail != null) {
-            if (nodeHead.next == nodeTail && nodeTail.prev == nodeHead) {
-               if(nodeHead.value == _value){
-                   nodes.add(nodeHead);
-               }
-               if(nodeTail.value == _value){
-                   nodes.add(nodeTail);
-               }
+        int iterCount = 0;
+        while (iterCount < this.count/2+1) { // проверить
+            if (nodeHead.value == _value && nodeTail.value == _value && this.count == 1) {
+                nodes.add(nodeHead);
+                break;
+            }
+            if (nodeHead.value == _value && nodeTail.value == _value) {
+                nodes.add(nodeHead);
+                nodes.add(nodeTail);
                break;
             } else {
                 if (nodeHead != nodeTail) {
@@ -59,7 +59,7 @@ public class LinkedList2 {
                         nodes.add(nodeTail);
                     }
                 } else {
-                    if(nodeHead.value == _value){
+                    if (nodeHead.value == _value) {
                         nodes.add(nodeHead);
                         break;
                     }
@@ -68,6 +68,7 @@ public class LinkedList2 {
 
             nodeHead = nodeHead.next;
             nodeTail = nodeTail.prev;
+            iterCount++;
         }
         return nodes;
     }

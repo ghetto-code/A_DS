@@ -10,8 +10,8 @@ public class Main {
         Node firstNode = new Node(23);
         Node secondNode = new Node(24);
         Node thirdNode= new Node(25);
-        Node fourthNode = new Node(23);
-        Node fifthNode = new Node(28);
+        Node fourthNode = new Node(22);
+        Node fifthNode = new Node(22);
         Node sixthNode = new Node(23);
         Node seventhNode = new Node(23);
         Node eighthNode = new Node(23);
@@ -25,25 +25,24 @@ public class Main {
 
 //        myLL2.insertAfter(null, firstNodeForInsertInHead);
         myLL2.addInTail(firstNode);
-//        myLL2.addInTail(secondNode);
+        myLL2.addInTail(secondNode);
         myLL2.addInTail(thirdNode);
-//        myLL2.addInTail(fourthNode);
-//        myLL2.addInTail(fifthNode);
-//        myLL2.addInTail(sixthNode);
-//        myLL2.addInTail(seventhNode);
-//        myLL2.addInTail(eighthNode);
+        myLL2.addInTail(fourthNode);
+        myLL2.addInTail(fifthNode);
+        myLL2.addInTail(sixthNode);
+        myLL2.addInTail(seventhNode);
+        myLL2.addInTail(eighthNode);
 //        myLL2.insertAfter(firstNodeForInsertInHead, secondNodeForInsertInHead);
-        myLL2.removeAll(23);
+//        myLL2.removeAll(23);
 //        myLL2.insertAfter(fourthNode, firstNodeForInsertInMiddle);
 //        myLL2.insertAfter(firstNodeForInsertInMiddle,secondNodeForInsertInMiddle);
 //        myLL2.insertAfter(seventhNode,firstNodeForInsertInEnd);
 //        myLL2.insertAfter(firstNodeForInsertInEnd,secondNodeForInsertInEnd);
-
-
-
-
-
-
+        ArrayList<Node> list = myLL2.findAll(22);
+        for (Node x :  list) {
+            System.out.println(x.value);
+        }
+        System.out.println();
 
         Node c = myLL2.head;
         while (c!=null) {
