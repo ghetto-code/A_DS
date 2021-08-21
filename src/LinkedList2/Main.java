@@ -27,8 +27,8 @@ public class Main {
 //        myLL2.addInTail(firstNode);
 //        myLL2.addInTail(secondNode);
 //        myLL2.addInTail(thirdNode);
-//        myLL2.addInTail(fourthNode);
-//        myLL2.addInTail(fifthNode);
+        myLL2.addInTail(fourthNode);
+        myLL2.addInTail(fifthNode);
 //        myLL2.addInTail(sixthNode);
 //        myLL2.addInTail(seventhNode);
 //        myLL2.addInTail(eighthNode);
@@ -38,6 +38,7 @@ public class Main {
 //        myLL2.insertAfter(firstNodeForInsertInMiddle,secondNodeForInsertInMiddle);
 //        myLL2.insertAfter(seventhNode,firstNodeForInsertInEnd);
 //        myLL2.insertAfter(firstNodeForInsertInEnd,secondNodeForInsertInEnd);
+//        ArrayList<Node> list = myLL2.findAll(22);
         ArrayList<Node> list = myLL2.findAll(22);
         for (Node x :  list) {
             System.out.println(x.value);

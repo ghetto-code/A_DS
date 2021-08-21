@@ -36,42 +36,34 @@ public class LinkedList2 {
     }
 
     public ArrayList<Node> findAll(int _value) {
-
         ArrayList<Node> nodes = new ArrayList<>();
         if (this.count == 0){
             return nodes;
         }
         Node nodeHead = this.head;
         Node nodeTail = this.tail;
-        int iterCount = 0;
-        while (iterCount < this.count/2+1) { // проверить
-            if (nodeHead.value == _value && nodeTail.value == _value && this.count == 1) {
-                nodes.add(nodeHead);
-                break;
-            }
-            if (nodeHead.value == _value && nodeTail.value == _value) {
-                nodes.add(nodeHead);
-                nodes.add(nodeTail);
-               break;
-            } else {
-                if (nodeHead != nodeTail) {
-                    if (nodeHead.value == _value) {
-                        nodes.add(nodeHead);
-                    }
-                    if (nodeTail.value == _value) {
-                        nodes.add(nodeTail);
-                    }
-                } else {
-                    if (nodeHead.value == _value) {
-                        nodes.add(nodeHead);
-                        break;
-                    }
-                }
-            }
 
+        if (this.count == 1 & nodeHead.value == _value){
+            nodes.add(nodeHead);
+        }
+        int iterCount = 0;
+
+        while (iterCount < this.count / 2) {
+            if(nodeHead.value == _value) {
+                nodes.add(nodeHead);
+            }
+            if(nodeTail.value == _value) {
+                nodes.add(nodeTail);
+            }
             nodeHead = nodeHead.next;
             nodeTail = nodeTail.prev;
             iterCount++;
+        }
+        if (this.count % 2 != 0){
+            nodeHead = nodeHead.next;
+            if (nodeHead.value == _value) {
+               nodes.add(nodeHead);
+            }
         }
         return nodes;
     }
@@ -141,7 +133,6 @@ public class LinkedList2 {
         }
         return false;
     }
-
 
     public void removeAll(int _value) {
         if (count == 0){
