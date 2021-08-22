@@ -83,7 +83,7 @@ public class LinkedList2 {
 
         while (iterCount < this.count / 2) {
             if (_fromHead.value == _value) {
-                if (_fromHead == this.head){
+                if (_fromHead == this.head) {
                     this.head = _fromHead.next;
                     _fromHead.next.prev = null;
                     count--;
@@ -137,59 +137,60 @@ public class LinkedList2 {
         if (_fromHead.value == _value && this.count == 1) {
             this.clear();
         }
-
-        int iterCount = 0;
-
-        while (iterCount < this.count / 2) {
-            if (_fromHead.next == _fromTail && _fromHead.value == _value) {
-                if (this.count == 2){
-                    this.clear();
-                    break;
-                } else {
-                    Node prev = _fromHead.prev;
-                    Node next = _fromTail.next;
-                    prev.next = next.prev;
-                }
+        if (this.count == 2) {
+            if (_fromHead.value  == _value && _fromTail.value == _value) {
+                this.clear();
+            } else if (_fromHead.value == _value) {
+                this.head = _fromHead.next;
+                _fromHead.next.prev = null;
+                count--;
+            } else if (_fromTail.value == _value) {
+                this.tail = _fromTail.prev;
+                _fromTail.prev.next = null;
+                count--;
             }
-            if (_fromHead.value == _value) {
-                if (_fromHead == this.head){
-                    this.head = _fromHead.next;
-                    _fromHead.next.prev = null;
-
-                }else{
+        } else {
+            int iterCount = 0;
+            while (iterCount < this.count / 2) {
+                if (_fromHead.value == _value) {
+                    if (this.head == _fromHead) {
+                        this.head = _fromHead.next;
+                        _fromHead.next.prev = null;
+                        this.count--;
+                    } else {
+                        Node prev = _fromHead.prev;
+                        Node next = _fromHead.next;
+                        prev.next = next;
+                        next.prev = prev;
+                    }
+                    this.count--;
+                }
+                assert _fromTail != null;
+                if (_fromTail.value == _value) {
+                    if (this.tail == _fromTail) {
+                        this.tail = _fromTail.prev;
+                        _fromTail.prev.next = null;
+                    } else {
+                        Node prev = _fromTail.prev;
+                        Node next = _fromTail.next;
+                        prev.next = next;
+                        next.prev = prev;
+                    }
+                    count--;
+                }
+                _fromHead = _fromHead.next;
+                _fromTail = _fromTail.prev;
+                iterCount++;
+            }
+            if (this.count % 2 != 0) {
+                _fromHead = _fromHead.next;
+                if (_fromHead.value == _value) {
                     Node prev = _fromHead.prev;
                     Node next = _fromHead.next;
                     prev.next = next;
                     next.prev = prev;
+                    count--;
                 }
-                count--;
-            }
-
-            assert _fromTail != null;
-            if (_fromTail.value == _value) {
-                if (_fromTail == this.tail) {
-                    this.tail = _fromTail.prev;
-                    _fromTail.prev.next = null;
-                } else {
-                    Node prev = _fromTail.prev;
-                    Node next = _fromTail.next;
-                    prev.next = next;
-                    next.prev = prev;
-                }
-                count--;
-            }
-            _fromHead = _fromHead.next;
-            _fromTail = _fromTail.prev;
-            iterCount++;
-        }
-        if (this.count % 2 != 0) {
-            _fromHead = _fromHead.next;
-            if (_fromHead.value == _value) {
-                Node prev = _fromHead.prev;
-                Node next = _fromHead.next;
-                prev.next = next;
-                next.prev = prev;
-                count--;
             }
         }
     }
