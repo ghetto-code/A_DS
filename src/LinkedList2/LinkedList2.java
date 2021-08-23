@@ -153,6 +153,7 @@ public class LinkedList2 {
             int iterCount = 0;
             final int state = this.count;
             while (iterCount < state / 2) {
+
                 if (_fromHead.value == _value) {
                     if (this.head == _fromHead) {
                         this.head = _fromHead.next;
@@ -182,7 +183,12 @@ public class LinkedList2 {
                 _fromTail = _fromTail.prev;
                 iterCount++;
             }
-
+            if(_fromHead.next == _fromTail.next) {
+                Node x = _fromHead.prev;
+                Node z = _fromTail.next;
+                x.next = z;
+                z.prev = x;
+            }
             if (state % 2 != 0) {
                 _fromHead = _fromHead.next;
                 if (_fromHead.value == _value) {
