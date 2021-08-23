@@ -151,12 +151,12 @@ public class LinkedList2 {
             }
         } else {
             int iterCount = 0;
-            while (iterCount < this.count / 2) {
+            final int state = this.count;
+            while (iterCount < state / 2) {
                 if (_fromHead.value == _value) {
                     if (this.head == _fromHead) {
                         this.head = _fromHead.next;
                         _fromHead.next.prev = null;
-                        this.count--;
                     } else {
                         Node prev = _fromHead.prev;
                         Node next = _fromHead.next;
@@ -182,7 +182,8 @@ public class LinkedList2 {
                 _fromTail = _fromTail.prev;
                 iterCount++;
             }
-            if (this.count % 2 != 0) {
+
+            if (state % 2 != 0) {
                 _fromHead = _fromHead.next;
                 if (_fromHead.value == _value) {
                     Node prev = _fromHead.prev;
@@ -206,7 +207,6 @@ public class LinkedList2 {
     }
 
     public void insertAfter(Node _nodeAfter, Node _nodeToInsert) {
-
         Node _fromHead = this.head;
         Node _fromTail = this.tail;
         if (_nodeAfter == null) {

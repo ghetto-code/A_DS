@@ -24,20 +24,20 @@ public class Main {
         Node secondNodeForInsertInEnd = new Node(666);
 
 //        myLL2.insertAfter(null, firstNodeForInsertInHead);
-        myLL2.addInTail(firstNode);
-        myLL2.addInTail(secondNode);
-        myLL2.addInTail(thirdNode);
+//        myLL2.addInTail(firstNode);
+//        myLL2.addInTail(secondNode);
+//        myLL2.addInTail(thirdNode);
         myLL2.addInTail(fourthNode);
         myLL2.addInTail(fifthNode);
-        myLL2.addInTail(sixthNode);
-        myLL2.addInTail(seventhNode);
-        myLL2.addInTail(eighthNode);
+//        myLL2.addInTail(sixthNode);
+//        myLL2.addInTail(seventhNode);
+//        myLL2.addInTail(eighthNode);
 //        myLL2.insertAfter(firstNodeForInsertInHead, secondNodeForInsertInHead);
 //        myLL2.insertAfter(fourthNode, firstNodeForInsertInMiddle);
 //        myLL2.insertAfter(firstNodeForInsertInMiddle,secondNodeForInsertInMiddle);
 //        myLL2.insertAfter(seventhNode,firstNodeForInsertInEnd);
 //        myLL2.insertAfter(firstNodeForInsertInEnd,secondNodeForInsertInEnd);
-        myLL2.removeAll(23);
+        myLL2.removeAll(22);
 //        ArrayList<Node> list = myLL2.findAll(22);
 //        ArrayList<Node> list = myLL2.findAll(22);
 //        for (Node x :  list) {
