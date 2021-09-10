@@ -93,21 +93,21 @@ public class LinkedList2 {
                 Node next = _fromHead.next;
                 prev.next = next;
                 next.prev = prev;
-                count--;
+                this.count--;
                 return true;
             }
             if (_fromTail.value == _value) {
                 if (_fromTail == this.tail) {
                     this.tail = _fromTail.prev;
                     _fromTail.prev.next = null;
-                    count--;
+                    this.count--;
                     return true;
                 }
                 Node prev = _fromTail.prev;
                 Node next = _fromTail.next;
                 prev.next = next;
                 next.prev = prev;
-                count--;
+                this.count--;
                 return true;
             }
             _fromHead = _fromHead.next;
@@ -121,7 +121,7 @@ public class LinkedList2 {
                 Node next = _fromHead.next;
                 prev.next = next;
                 next.prev = prev;
-                count--;
+                this.count--;
                 return true;
             }
         }
@@ -130,75 +130,26 @@ public class LinkedList2 {
 
     public void removeAll(int _value) {
         Node _fromHead = this.head;
-        Node _fromTail = this.tail;
-        if (this.count == 0) {
-            return;
-        }
-        if (_fromHead.value == _value && this.count == 1) {
-            this.clear();
-        }
-        if (this.count == 2) {
-            if (_fromHead.value  == _value && _fromTail.value == _value) {
-                this.clear();
-            } else if (_fromHead.value == _value) {
-                this.head = _fromHead.next;
-                _fromHead.next.prev = null;
-                count--;
-            } else if (_fromTail.value == _value) {
-                this.tail = _fromTail.prev;
-                _fromTail.prev.next = null;
-                count--;
-            }
-        } else {
-            int iterCount = 0;
-            final int state = this.count;
-            while (iterCount < state / 2) {
+        while (_fromHead != null) {
+            if (_fromHead.value == _value) {
+                if (this.count == 1) {
+                    this.head = null;
+                    this.tail = null;
+                    this.count = 0;
+                } else if (this.head == _fromHead) {
+                    this.head = _fromHead.next;
+                    _fromHead.next.prev = null;
+                } else {
+                    _fromHead.prev.next = _fromHead.next;
+                    try {
+                        _fromHead.next.prev = _fromHead.prev;
+                    } catch (NullPointerException e) {
 
-                if (_fromHead.value == _value) {
-                    if (this.head == _fromHead) {
-                        this.head = _fromHead.next;
-                        _fromHead.next.prev = null;
-                    } else {
-                        Node prev = _fromHead.prev;
-                        Node next = _fromHead.next;
-                        prev.next = next;
-                        next.prev = prev;
                     }
-                    this.count--;
                 }
-                assert _fromTail != null;
-                if (_fromTail.value == _value) {
-                    if (this.tail == _fromTail) {
-                        this.tail = _fromTail.prev;
-                        _fromTail.prev.next = null;
-                    } else {
-                        Node prev = _fromTail.prev;
-                        Node next = _fromTail.next;
-                        prev.next = next;
-                        next.prev = prev;
-                    }
-                    count--;
-                }
-                _fromHead = _fromHead.next;
-                _fromTail = _fromTail.prev;
-                iterCount++;
+                this.count--;
             }
-            if(_fromHead.next == _fromTail.next) {
-                Node x = _fromHead.prev;
-                Node z = _fromTail.next;
-                x.next = z;
-                z.prev = x;
-            }
-            if (state % 2 != 0) {
-                _fromHead = _fromHead.next;
-                if (_fromHead.value == _value) {
-                    Node prev = _fromHead.prev;
-                    Node next = _fromHead.next;
-                    prev.next = next;
-                    next.prev = prev;
-                    count--;
-                }
-            }
+            _fromHead = _fromHead.next;
         }
     }
 
