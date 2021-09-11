@@ -144,7 +144,7 @@ public class LinkedList2 {
                     try {
                         _fromHead.next.prev = _fromHead.prev;
                     } catch (NullPointerException e) {
-
+                        this.tail = _fromHead.prev;
                     }
                 }
                 this.count--;
