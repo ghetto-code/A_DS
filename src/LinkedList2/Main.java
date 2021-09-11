@@ -37,21 +37,20 @@ public class Main {
 //        myLL2.insertAfter(firstNodeForInsertInMiddle,secondNodeForInsertInMiddle);
 //        myLL2.insertAfter(seventhNode,firstNodeForInsertInEnd);
 //        myLL2.insertAfter(firstNodeForInsertInEnd,secondNodeForInsertInEnd);
-        myLL2.removeAll(23);
-        myLL2.removeAll(22);
+//        myLL2.removeAll(23);
+//        myLL2.removeAll(22);
 //        myLL2.removeAll(24);
 //        myLL2.removeAll(23);
+        ArrayList<Node> list = myLL2.findAll(22);
 //        ArrayList<Node> list = myLL2.findAll(22);
-//        ArrayList<Node> list = myLL2.findAll(22);
-//        for (Node x :  list) {
-//            System.out.println(x.value);
-//        }
-//        System.out.println();
-
-        Node c = myLL2.head;
-        while (c!=null) {
-            System.out.println(c.value);
-            c = c.next;
+        for (Node x :  list) {
+            System.out.println(x.value);
         }
+
+//        Node c = myLL2.head;
+//        while (c!=null) {
+//            System.out.println(c.value);
+//            c = c.next;
+//        }
     }
 }

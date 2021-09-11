@@ -37,33 +37,12 @@ public class LinkedList2 {
 
     public ArrayList<Node> findAll(int _value) {
         ArrayList<Node> nodes = new ArrayList<>();
-        if (this.count == 0){
-            return nodes;
-        }
-        Node nodeHead = this.head;
-        Node nodeTail = this.tail;
-
-        if (this.count == 1 & nodeHead.value == _value){
-            nodes.add(nodeHead);
-        }
-        int iterCount = 0;
-
-        while (iterCount < this.count / 2) {
-            if(nodeHead.value == _value) {
-                nodes.add(nodeHead);
+        Node _fromHead = this.head;
+        while (_fromHead != null) {
+            if (_fromHead.value == _value) {
+                nodes.add(_fromHead);
             }
-            if(nodeTail.value == _value) {
-                nodes.add(nodeTail);
-            }
-            nodeHead = nodeHead.next;
-            nodeTail = nodeTail.prev;
-            iterCount++;
-        }
-        if (this.count % 2 != 0){
-            nodeHead = nodeHead.next;
-            if (nodeHead.value == _value) {
-               nodes.add(nodeHead);
-            }
+            _fromHead = _fromHead.next;
         }
         return nodes;
     }
