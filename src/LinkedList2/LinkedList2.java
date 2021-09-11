@@ -115,6 +115,7 @@ public class LinkedList2 {
                     this.head = null;
                     this.tail = null;
                     this.count = 0;
+                    return;
                 } else if (this.head == _fromHead) {
                     this.head = _fromHead.next;
                     _fromHead.next.prev = null;
