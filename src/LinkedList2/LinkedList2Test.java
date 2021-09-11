@@ -80,9 +80,9 @@ class LinkedList2Test {
         firstRes.add(firstNodeOne);
         ArrayList<Node> secondRes = new ArrayList<>();
         secondRes.add(firstNodeFull);
-        secondRes.add(seventhNodeFull);
-        secondRes.add(sixNodeFull);
         secondRes.add(fourthNodeFull);
+        secondRes.add(sixNodeFull);
+        secondRes.add(seventhNodeFull);
 
         ArrayList<Node> thirdRes = new ArrayList<>();
 
