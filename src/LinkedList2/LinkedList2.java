@@ -146,39 +146,23 @@ public class LinkedList2 {
     public void insertAfter(Node _nodeAfter, Node _nodeToInsert) {
         Node _fromHead = this.head;
         Node _fromTail = this.tail;
-        if (_nodeAfter == null) {
-            this.addInTail(_nodeToInsert);
+        if (_fromHead == null) {
+            addInTail(_nodeToInsert);
             return;
         }
-        if (this.count == 1 && _fromHead == _nodeAfter) {
-            this.addInTail(_nodeToInsert);
-            return;
-        }
-        int iterCounter = 0;
-        while (iterCounter < this.count / 2) {
-            if (_fromHead == _nodeAfter) {
-                Node swap = _fromHead.next;
-                _fromHead.next = _nodeToInsert;
-                _nodeToInsert.prev = _fromHead;
-                _nodeToInsert.next = swap;
-                swap.prev = _nodeToInsert;
+        while (_fromHead != null) {
+            if (_fromTail == _nodeAfter) {
+                this.addInTail(_nodeToInsert);
                 return;
             }
-            if (_fromTail == _nodeAfter) {
-               if (_fromTail.next == null) {
-                  addInTail(_nodeToInsert);
-               } else {
-                   Node swap = _fromTail.next;
-                   _fromTail.next = _nodeToInsert;
-                   _nodeToInsert.prev = _fromTail;
-                   _nodeToInsert.next = swap;
-                   swap.prev = _nodeToInsert;
-                   return;
-               }
+            if (_fromHead == _nodeAfter) {
+                Node swap = _fromHead.next;
+                _nodeToInsert.prev = _fromHead;
+                _nodeToInsert.next = swap;
+                _fromHead.next = _nodeToInsert;
+
             }
             _fromHead = _fromHead.next;
-            _fromTail = _fromTail.prev;
-            this.count++;
         }
     }
 }
