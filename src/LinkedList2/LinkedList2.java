@@ -6,17 +6,20 @@ public class LinkedList2 {
     public Node head;
     public Node tail;
     public int count;
+    private Node DummyHead = new Node();
+    private Node DummyTail = new Node();
     public LinkedList2() {
         count = 0;
         head = null;
         tail = null;
+
     }
 
     public void addInTail(Node _item) {
         if (head == null) {
             this.head = _item;
-            this.head.next = null;
-            this.head.prev = null;
+            this.head.next = DummyTail;
+            this.head.prev = DummyHead;
         } else {
             this.tail.next = _item;
             _item.prev = tail;
@@ -171,9 +174,16 @@ class Node {
     public int value;
     public Node next;
     public Node prev;
+    public boolean dummy;
 
     public Node(int _value) {
         value = _value;
+        next = null;
+        prev = null;
+        dummy = false;
+    }
+    public Node() {
+        dummy = true;
         next = null;
         prev = null;
     }
