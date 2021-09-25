@@ -23,7 +23,6 @@ class StackTest {
     int thirdFull = 3;
     int fourthFull = 4;
 
-
     // Узлы для проверки:
 
         // для пустого списка

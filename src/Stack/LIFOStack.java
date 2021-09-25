@@ -1,13 +1,13 @@
 package Stack;
 
-public class Stack<T> {
+public class LIFOStack<T> {
     Node<T> head;
     Node<T> tail;
     protected int count = 0;
 
-    public Stack() {
-       tail = null;
-       head = null;
+    public LIFOStack() {
+        tail = null;
+        head = null;
     }
 
     public int size() {
@@ -34,17 +34,17 @@ public class Stack<T> {
             this.count--;
             return swap.value;
         }
-            return null;
-
+        return null;
     }
 
     public void push(T val) {
         Node node = new Node(val);
-        if (this.head == null)
-            this.head = node;
-        else
-            this.tail.next = node;
-        this.tail = node;
+        if (this.head == null) {
+            this.tail = node;
+        } else {
+            node.next = this.head;
+        }
+        this.head = node;
         this.count++;
     }
 
@@ -56,11 +56,4 @@ public class Stack<T> {
     }
 }
 
-class Node<T> {
-    public Node next;
-    T value;
-    public Node(T clz) {
-        value = clz;
-        next = null;
-    }
-}
+
