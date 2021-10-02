@@ -13,20 +13,21 @@ public class Main {
         for (Character x: str.toCharArray()){
             stringStack.push(x);
         }
-        int countOpenZ = 0;
+
         while (stringStack.size() > 0) {
-            if (stringStack.peek() == '(' && countOpenZ == 0) {
+            if (stringStack.peek() == '(') {
                 return false;
             }
             if (stringStack.peek() == '(') {
-               countOpenZ++;
+
 
             }
             if (stringStack.peek()== ')') {
-                countOpenZ--;
+
+                
             }
             stringStack.pop();
         }
-        return countOpenZ == 0;
+        return false;
     }
 }

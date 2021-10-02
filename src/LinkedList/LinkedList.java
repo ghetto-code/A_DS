@@ -41,7 +41,7 @@ public class LinkedList {
      }
 
      public boolean remove(int _value) {
-         try{
+         try {
              Node prevEl = null;
              Node currentEl = this.head;
              Node nextEl = currentEl.next;
@@ -131,7 +131,7 @@ public class LinkedList {
              }
          }
        // если _nodeAfter = null,
-       // добавьте новый элемент первым в списке      
+       // добавьте новый элемент первым в списке
      }
      public boolean isEquals(LinkedList a, LinkedList b) {
          if (a.count() != b.count()) {
