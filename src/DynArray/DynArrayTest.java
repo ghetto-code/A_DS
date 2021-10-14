@@ -28,9 +28,6 @@ public class DynArrayTest {
         for (int i = 1; i < 19; i ++) {
             dynArraySuperFull.append(i);
         }
-
-
-
     }
 
     @Test

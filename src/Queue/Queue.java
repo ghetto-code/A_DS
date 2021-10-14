@@ -41,9 +41,11 @@ public class Queue<T> {
 }
 class Node<T> {
     public Node next;
+    public Node prev;
     T value;
     public Node(T clz) {
         value = clz;
         next = null;
+        prev = null;
     }
 }
